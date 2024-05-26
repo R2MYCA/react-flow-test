@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Flow Mindmap App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- <script type="module" src="/src/main.tsx"></script> -->
+    <script type="module" src="/build/schemaNodeEditeur.js"></script>
+    <script>
+    const element = document.getElementById( 'root' );
+      var r = { 
+      nodes:  [ 
+          { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
+          { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+      ], 
+      edges: [
+          { id: 'e1-2', source: '1', target: '2' }
+      ],
+      };
+      var x = new MyLibrary.SchemaNodeEditor();
+      // SchemaNodeEditor.create( element , r );</script>
+  </body>
+</html>
