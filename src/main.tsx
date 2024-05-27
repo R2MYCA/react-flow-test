@@ -19,7 +19,7 @@ export default class SchemaNodeEditor {
         <ReactFlowProvider>
           <App 
             initialNodes={data.nodes}
-            initialEdges={data.edges}  
+            initialEdges={data.edges}
           />
         </ReactFlowProvider>
       </React.StrictMode>
@@ -34,53 +34,14 @@ window.SchemaNodeEditor = SchemaNodeEditor || {};
 
 //Mettre en commentaire cette partie pour ne pas executer celle-ci dans le fichier build(le fichier d'export de la library);
 
-// const element = document.getElementById( 'root' );
-// var r = { 
-//   nodes:  [ 
-//     { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-//     { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-//   ], 
-//   edges: [
-//     { id: 'e1-2', source: '1', target: '2' }
-//   ],
-// };
-// const schemaEditor =  SchemaNodeEditor.create( element , r );
-  
-
-
-
-
-
-  // [ 
-  //   { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-  //   { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-  // ];
-// var r =  [] = [
-//   {
-//       id: 'root',
-//       type: 'mindmap',
-//       data: { label: 'React Flow Mind Map' },
-//       position: { x: 0, y: 0 },
-//       dragHandle: '.dragHandle',
-//       test:"",
-//     },
-//     // { 
-//     //   id: '1', 
-//     //   type: 'mindmap',
-//     //   data: { label: 'Node 1' },
-//     //   position: { x: 100, y: 100 },
-//     //   dragHandle: '.dragHandle',
-//     // },
-//     // { 
-//     //   id: '2',
-//     //   type: 'mindmap',
-//     //   data: { label: 'Node 2' },
-//     //   position: { x: 100, y: 200 } 
-//     // },
-//   ];
-// if(element !=  null){
-// }
-//   ,{
-//     customValue: {saveFunction: testFunction}
-// }
-// );
+const element = document.getElementById( 'root' );
+var r = { 
+  nodes:  [ 
+    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
+    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+  ], 
+  edges: [
+    { id: 'e1-2', source: '1', target: '2' }
+  ],
+};
+const schemaEditor =  SchemaNodeEditor.create( element , r );

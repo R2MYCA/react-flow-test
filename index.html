@@ -3,24 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React Flow Mindmap App</title>
+    <title>Schema Node Editor Test</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Mon code general de schema -->
+    <!-- <div class="page-content">
+      <div class="affichage-scenario-action">
+          <div id="listePoliceScenarioTache_testAddContent">
+              <div id='parent'>
+                  <section class='section'>
+                      @foreach (var ad in Model.scenario.ListScenarioAction.Where(li => li.SCA_EST_DEPART.HasValue && li.SCA_EST_DEPART.Value))
+                      {
+                          <div class='dd'>
+                              @{
+                                  await CreateElement(ad);
+                              }
+                          </div>
+                      }
+                  </section>
+              </div>
+              <div class="minimap-box">
+                  <div id="minimap"><div class="minimap-viewport" style="width: 30px; height: 82px; left: 0px; top: 0px;"></div><canvas id="miniMapCanva" width="250px" height="130px"></canvas></div>
+                  <div class="minimap-options">
+                      <div id="js-minimap-initial-pos" class="minimap-options-item">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize">
+                              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                          </svg>
+                      </div>
+                      <div id="js-minimap-moin" class="minimap-options-item">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                          </svg>
+                      </div>
+                      <div id="js-minimap-plus" class="minimap-options-item">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                              <line x1="12" y1="5" x2="12" y2="19"></line>
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                          </svg>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>     -->
+
+
+
     <!-- <script type="module" src="/src/main.tsx"></script> -->
-    <script type="module" src="/build/schemaNodeEditeur.js"></script>
+    <script src="/build/schemaNodeEditeur.js"></script>
     <script>
-    const element = document.getElementById( 'root' );
-      var r = { 
-      nodes:  [ 
-          { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-          { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-      ], 
-      edges: [
-          { id: 'e1-2', source: '1', target: '2' }
-      ],
+      const element = document.getElementById( 'root' );
+        var r = { 
+        nodes:  [ 
+            { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
+            { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+        ], 
+        edges: [
+            { id: 'e1-2', source: '1', target: '2' }
+        ],
       };
-      var x = new MyLibrary.SchemaNodeEditor();
-      // SchemaNodeEditor.create( element , r );</script>
+      // var x = new MyLibrary.SchemaNodeEditor();
+      SchemaNodeEditor.create( element , r );
+    </script>
   </body>
 </html>
