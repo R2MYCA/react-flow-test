@@ -37,11 +37,11 @@ window.SchemaNodeEditor = SchemaNodeEditor || {};
 const element = document.getElementById( 'root' );
 var r = { 
   nodes:  [ 
-    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+    { id: '1', type:'attente', position: { x: 0, y: 0 }, data: { label: '1' } },
+    { id: '2', type:'attente', position: { x: 500, y: 0 }, data: { label: '2' } },
   ], 
   edges: [
-    { id: 'e1-2', source: '1', target: '2' }
+    { id: 'e1-2', source: '1',  type: 'ButtonEdge', target: '2' }
   ],
 };
 const schemaEditor =  SchemaNodeEditor.create( element , r );
