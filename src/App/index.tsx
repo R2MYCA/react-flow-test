@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, Edge } from 'reactflow';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, Edge, MiniMap, Background, ReactFlowProvider, Controls } from 'reactflow';
  
 import 'reactflow/dist/style.css';
 import { gestion, envoi, scenario, attente, mail, retour, conditionnee, retourUser } from './CustomNode';
@@ -22,22 +22,31 @@ export default function App({initialNodes, initialEdges}:any) {
  //importe les types de nodes disponible 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        onEdgeClick={test}
-      >
-        <CustomControls />
-      </ReactFlow>
+      <ReactFlowProvider>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          // onEdgeClick={test}
+        >
+          <MiniMap zoomable pannable />
+          <Background />
+          <CustomControls />
+          <Controls></Controls>
+        </ReactFlow>
+      </ReactFlowProvider>
     </div>
   );
 }
-function test(sdfs){
-  console.log(sdfs)
-  console.log("Je suis")
-}
+
+// function test(event, edge){
+//   console.log(event);
+//   console.log(edge);
+  
+//   edge.type = "smoothstep";
+//   console.log("Je suis")
+// }
