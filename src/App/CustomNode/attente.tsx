@@ -3,11 +3,16 @@ import { Handle, NodeProps, Position } from 'reactflow';
 export type NodeData = {
   label: string;
 };
+var isSelected = false;
+const onClick = () => {
+    console.log("Je suis dans le select");
+    isSelected = true;
+  }
  
 function attente({ id, data }: NodeProps<NodeData>) {
     return (
-        <div className="item-test-wrap">
-            <div className="item-test attente" data-id={id}>
+        <div className="item-test-wrap " onClick={onClick} >
+            <div className={"item-test attente " + (isSelected ? "selected": "")}  data-id={id}>
                 <div className="item-test-header">
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

@@ -2,7 +2,7 @@ import { useStoreApi, useReactFlow, Panel } from "reactflow";
 
 function CustomControls() {
   const store = useStoreApi();
-  const { zoomIn, zoomOut, setCenter } = useReactFlow();
+  const { zoomIn, zoomOut, fitView, setCenter } = useReactFlow();
 
   const focusNode = () => {
     const { nodeInternals } = store.getState();
@@ -24,12 +24,13 @@ function CustomControls() {
   const dezoom = () => {
     zoomOut();
   }
+  const fit = () => {
+    fitView();
+  }
 
   return (
     <Panel position="top-left">
-      <div className="description">
-        This is an example of how you can use the zoom pan helper hook
-      </div>
+      
       <div>
         <button onClick={focusNode} >
           focus node
@@ -39,6 +40,9 @@ function CustomControls() {
         </button>
         <button onClick={dezoom}>
           zoom out
+        </button>
+        <button onClick={fit}>
+          fit the view
         </button>
       </div>
     </Panel>
