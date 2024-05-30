@@ -54,7 +54,8 @@ export default function App({initialNodes, initialEdges}:any) {
     shallow,
   );
   const [reactFlowInstance, setReactFlowInstance] = useState();
-  const {setCenter } = useReactFlow();
+  // const {setCenter } = useReactFlow();
+  const { zoomIn, zoomOut, fitView, setCenter } = useReactFlow();
  
   //Function quand je connect 2 edges (que je crée un edge)
   const onConnect = useCallback(
@@ -107,26 +108,28 @@ export default function App({initialNodes, initialEdges}:any) {
   // const onNodeClick = useCallback()  
 
   //Essai de focus quand double click sur un node
-  // const onNodeDoubleClick = useCallback(
-  //   (event, data) => {
-  //     const node = data;
+  const onNodeDoubleClick = (event, data) => {
+    const node = data;
     
-  //     // focusNode(node);
-  //     const x = node.position.x + node.width / 2;
-  //     const y = node.position.y + node.height / 2;
-  //     const zoom = 1.85;
-  //     console.log(x);
-  //     console.log(y)
+      // focusNode(node);
+      const x = node.position.x + node.width / 2;
+      const y = node.position.y + node.height / 2;
+      const zoom = 1.85;
+      console.log(x);
+      console.log(y)
 
-  //     setCenter(x, y, { zoom, duration: 1000 });
-  // }, [reactFlowInstance],);
+      setCenter(x, y, { zoom, duration: 1000 });
+  }
+    
 
   const onInit: OnInit = () => {
     //Ajoute les nodes importer par la librairie
     addChildNode(initialNodes, initialEdges);
+    //fit de la vue pour avoir une vision globale de la board
+    fitView();
   };
 
-  // wrap the `onNodesChange` function, so we can add our validation in there before a node gets removed
+  // Permet de récupére les événement pour gérer les actions
   function handleNodesChange(changes: NodeChange[]) {
     const nextChanges = changes.reduce((acc, change) => {
     // Si je suis en mode suppression
@@ -153,7 +156,6 @@ export default function App({initialNodes, initialEdges}:any) {
  //importe les types de nodes disponible 
   return (
     <div className="dndflow">
-      <ReactFlowProvider>
         <SideBar />
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
@@ -173,7 +175,7 @@ export default function App({initialNodes, initialEdges}:any) {
             // onNodeClick={onNodeClick}
             // onConnectStart={onConnectStart}
             // onConnectEnd={onConnectEnd}
-            // onNodeDoubleClick={onNodeDoubleClick}
+            onNodeDoubleClick={onNodeDoubleClick}
           >
             <MiniMap zoomable pannable />
             <Background />
@@ -183,7 +185,6 @@ export default function App({initialNodes, initialEdges}:any) {
           </ReactFlow>
         </div>
         <EditNodeData/>
-      </ReactFlowProvider>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes, faBars, faUser } from '@fortawesome/free-solid-svg-icons';
-import { faPauseCircle} from '@fortawesome/free-regular-svg-icons';
+import { faTimes, faBars, faShuffle } from '@fortawesome/free-solid-svg-icons';
+import { faPauseCircle, faPaperPlane, faUser, faEnvelopeOpen} from '@fortawesome/free-regular-svg-icons';
 
 
 
@@ -20,36 +20,36 @@ function DragAndDropNodeAdd(){
         <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
       </div>
       {/* <div className="description">Vous pouvez glisser déposer les éléments pour les créer.</div> */}
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'gestion')} draggable>
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'gestion')} draggable>
         <FontAwesomeIcon icon={faPauseCircle} />
         <span>Action Batch Gestion</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'envoi')} draggable>
-        <FontAwesomeIcon icon={faPauseCircle} />
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'envoi')} draggable>
+        <FontAwesomeIcon icon={faPaperPlane} />
         <span>Action Batch Envoi</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'scenario')} draggable>
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'scenario')} draggable>
         <FontAwesomeIcon icon={faPauseCircle} />
         <span>Action Scenario</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'attente')} draggable>
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'attente')} draggable>
         <FontAwesomeIcon icon={faPauseCircle} />
         <span>Action Attente</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'mail')} draggable>
-        <FontAwesomeIcon icon={faPauseCircle} />
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'mail')} draggable>
+        <FontAwesomeIcon icon={faEnvelopeOpen} />
         <span>Mail Simple</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'retour')} draggable>
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'retour')} draggable>
         <FontAwesomeIcon icon={faPauseCircle} />
         <span>Attente Retour</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'conditionnee')} draggable>
-        <FontAwesomeIcon icon={faPauseCircle} />
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'conditionnee')} draggable>
+        <FontAwesomeIcon icon={faShuffle} />
         <span>Action Conditionnée</span>
       </div>
-      <div className="sidebar-position" onDragStart={(event) => onDragStart(event, 'retourUser')} draggable>
-        <FontAwesomeIcon icon={faPauseCircle} />
+      <div className="sidebar-element" onDragStart={(event) => onDragStart(event, 'retourUser')} draggable>
+        <FontAwesomeIcon icon={faUser} />
         <span>Attente Retour Utilisateur</span>
       </div>
     </div>
