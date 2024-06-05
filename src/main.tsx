@@ -37,13 +37,12 @@ window.SchemaNodeEditor = SchemaNodeEditor || {};
 const element = document.getElementById( 'root' );
 var r = { 
   nodes:  [ 
-    // { id: 'start', type:'start', position: { x: 0, y: 0 }, data: { label: 'Start' } },
     { id: '1', type:'attente', position: { x: 200, y: 0 }, data: { label: '1' } },
     { id: '2', type:'attente', position: { x: 700, y: 0 }, data: { label: '2' } },
-    // { id: 'end', type:'end', position: { x: 1000, y: 0 }, data: { label: 'End' } },
   ], 
   edges: [
-    { id: 'e1-2', source: '1',  type: 'ButtonEdge', target: '2' }
+    { id: 'estart-2', source: 'start',  type: 'ButtonEdge', target: '2' },
+    { id: 'estart-1', source: 'start',  type: 'ButtonEdge', target: '1' }
   ],
 };
 const schemaEditor =  SchemaNodeEditor.create( element , r );

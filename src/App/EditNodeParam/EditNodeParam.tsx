@@ -1,15 +1,14 @@
 import React from 'react';
 
-function EditNodeData(){
-
+function EditNodeData({isShowed, data}){
+  if(!isShowed && data == null) return null
+  
   return (
-    <aside>
+    <div className="side-edit-bar side-edit-bar--open">
         <div className="updatenode__controls">
             <label>label:</label>
-            {/* <input value={nodeName} onChange={(evt) => setNodeName(evt.target.value)} /> */}
+            <input type="text" value={data.data.label} readOnly/>
 
-            <label className="updatenode__bglabel">background:</label>
-            {/* <input value={nodeBg} onChange={(evt) => setNodeBg(evt.target.value)} /> */}
     {/* 
             <div className="updatenode__checkboxwrapper">
                 <label>hidden:</label>
@@ -20,7 +19,7 @@ function EditNodeData(){
                 />
             </div> */}
         </div>
-    </aside>
+    </div>
   );
 };
 export default EditNodeData

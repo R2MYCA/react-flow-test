@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef,  } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, Edge, MiniMap, Background, ReactFlowProvider, Controls, NodeChange, useReactFlow, OnInit, useStoreApi } from 'reactflow';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, Edge, MiniMap, Background, ReactFlowProvider, Controls, NodeChange, useReactFlow, OnInit, useStoreApi, NodeTypes } from 'reactflow';
  
 //import de gestion des données
 import { shallow } from 'zustand/shallow';
@@ -27,13 +27,8 @@ const selector = (state: RFState) => ({
   getNode: state.getNode,
   setNode: state.setNode,
   setEdge: state.setEdge,
+  dispatchNodes: state.dispatchNodes,
 });
-
-//Déclaration des Nodes par default
-const defaultNode = [
-  { id: 'start', type:'start', position: { x: 0, y: 0 }, data: { label: 'Start' }, },
-  { id: 'end', type:'end', position: { x: 1000, y: 0 }, data: { label: 'End' } },
-];
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -49,11 +44,14 @@ function shouldNodeBeRemoved(node) {
 
 export default function App({initialNodes, initialEdges}:any) {
   const reactFlowWrapper = useRef(null);
-  const { nodes, edges, onNodesChange, onEdgesChange, addChildNode, getNode, setNode, setEdge } = useStore(
-    selector,
-    shallow,
+  const { nodes, edges, onNodesChange, onEdgesChange, addChildNode, getNode, setNode, setEdge, dispatchNodes } = useStore(
+    selector, 
+    shallow
   );
   const [reactFlowInstance, setReactFlowInstance] = useState();
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const [nodeEditData, setNodeEditData] = useState(null);
+  const [disabled, setDisabled] = useState(false);
   // const {setCenter } = useReactFlow();
   const { zoomIn, zoomOut, fitView, setCenter } = useReactFlow();
  
@@ -105,28 +103,38 @@ export default function App({initialNodes, initialEdges}:any) {
     [reactFlowInstance],
   );
 
-  // const onNodeClick = useCallback()  
+  const onNodeClick = (event, data) => {
+    //Affiche la modification que pour les nodes autres que les nodes de début et de fin
+    if(data.type != "start" && data.type != "end"){
+      setIsInEditMode(true);
+      setNodeEditData(data);
+    }
+  }  
+  const onPaneClick = (event) => {
+    setIsInEditMode(false);
+    setNodeEditData(null);
+  } 
 
   //Essai de focus quand double click sur un node
   const onNodeDoubleClick = (event, data) => {
-    const node = data;
-    
-      // focusNode(node);
-      const x = node.position.x + node.width / 2;
-      const y = node.position.y + node.height / 2;
-      const zoom = 1.85;
-      console.log(x);
-      console.log(y)
+    // var node = data;
+    // var x = node.position.x + node.width / 2;
+    // var y = node.position.y + node.height / 2;
+    // var zoom = 1.85;
+    // console.log(x);
+    // console.log(y)
+    dispatchNodes();
 
-      setCenter(x, y, { zoom, duration: 1000 });
+    // setCenter(x, y, { zoom, duration: 1000 });
   }
     
 
   const onInit: OnInit = () => {
     //Ajoute les nodes importer par la librairie
-    addChildNode(initialNodes, initialEdges);
+    // addChildNode(initialNodes, initialEdges);
+    // dispatchNodes();
     //fit de la vue pour avoir une vision globale de la board
-    fitView();
+    // fitView();
   };
 
   // Permet de récupére les événement pour gérer les actions
@@ -168,23 +176,35 @@ export default function App({initialNodes, initialEdges}:any) {
             edgeTypes={edgeTypes}
             snapToGrid={true}
             onInit={onInit}
+            
             // onEdgeClick={test}
             onDrop={onDrop}
             onDragOver={onDragOver}
             onConnect={onConnect}
-            // onNodeClick={onNodeClick}
+            onNodeClick={onNodeClick}
+            onPaneClick={onPaneClick}
             // onConnectStart={onConnectStart}
             // onConnectEnd={onConnectEnd}
             onNodeDoubleClick={onNodeDoubleClick}
+            edgesFocusable={!disabled}
+            nodesDraggable={!disabled}
+            nodesConnectable={!disabled}
+            nodesFocusable={!disabled}
+            draggable={!disabled}
+            panOnDrag={!disabled}
+            elementsSelectable={!disabled}
+            fitView
           >
-            <MiniMap zoomable pannable />
+            <div className="minimap-box">
+                <div id="minimap">
+                  <MiniMap zoomable pannable />
+                </div>
+                <CustomControls disabled={disabled} setDisabled={setDisabled} />
+            </div>
             <Background />
-            <CustomControls />
-            <Controls></Controls>
-            {/* Pour affiche la barre de drag and drop */}
           </ReactFlow>
         </div>
-        <EditNodeData/>
+        <EditNodeData isShowed={isInEditMode} data={nodeEditData} />
     </div>
   );
 }

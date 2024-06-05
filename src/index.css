@@ -684,12 +684,11 @@ h6.scenario-action {
   top: 0;
   width: 50px;
   height: 100%;
-  background-color: #2a363b;
+  background-color: #fff;
   transition: width 0.3s ease;
-  border-right: 1px #4d606e solid;
+  border-right: 1px #e9ecef solid;
   padding-top: 15px;
 }
-
 .sidebar .sidebar-element {
   height: 50px;
   cursor: grab;
@@ -697,18 +696,21 @@ h6.scenario-action {
   align-items: center;
   padding: 0 12px;
   text-align: left;
+  color:#000
 }
 .sidebar .sidebar-element:active{
   cursor: grabbing;
 }
 
 .sidebar .sidebar-element:hover {
-  background-color: #3f5159;
-  border-right: 5px #e84a5f solid;
+  background-color: #f6f6f6;
+  color: #0071CE !important;
+  /* background-color: #e4e4e4; */
+  border-right: 5px #0071CE solid;
 }
 
 .sidebar svg {
-  color: #e84a5f;
+  /* color: #000; */
   min-width: 25px;
 }
 
@@ -717,7 +719,7 @@ h6.scenario-action {
   height: 0;
   padding: 0 15px;
   transition: width 0.3s ease;
-  color: #c9c9c9;
+  /* color: #000; */
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
@@ -744,3 +746,124 @@ h6.scenario-action {
   justify-content: flex-end;
   padding: 0 12px 15px;
 }
+
+.node-wrap-selected {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  left: -20px;
+  bottom: -20px;
+  border: dashed 2px #c9c9c9;
+}
+
+.node-button-delete {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 25px;
+  height: 25px;
+  color: white;
+  background: #dc3545;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  border: #b1b1b7 1px solid;
+  z-index:1;
+}
+
+/* Edit bar */
+.side-edit-bar{
+  border-left: 1px #e9ecef solid;
+}
+.side-edit-bar--open {
+  width: 250px;
+  transition: width 0.3s ease;
+  height: 100%;
+  background-color: #fff;
+  padding-top: 15px;
+}
+
+/* Start/End node */
+.start-end-node-wrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 15px;
+}
+/* .start-end-node-wrap.selected {
+  border: dashed 2px #c9c9c9;
+  border-width: medium;
+} */
+.node-start-end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.node-start-end svg{
+  width:80px;
+  color: white;
+}
+/* .start-end-node-wrap.start.selected {
+  padding: 5px 0px 5px 10px;
+}
+.start-end-node-wrap.end.selected {
+  padding: 5px 10px 5px 0px;
+} */
+
+.start .node-start-end  .react-flow__handle {
+  right: -6px;
+}
+.end .node-start-end  .react-flow__handle {
+  left: -7px;
+}
+.node-start-end  .react-flow__handle {
+  width: 10px;
+  height: 10px;
+  border: 3px solid white;
+}
+
+/*  Minimap */
+.minimap-box {
+  z-index:5;
+  background-color: white;
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  padding: 10px 10px 0px 10px;
+  border-radius: 4px;
+}
+#minimap{
+  position: relative;
+  width: 200px;
+  height: 150px;
+}
+#minimap .react-flow__minimap{
+  height: 150px;
+  position: absolute;
+    box-sizing: border-box;
+    background-color: white;
+    cursor: move;
+    margin: 0;
+    left: inherit;
+    right: inherit;
+    bottom: inherit;
+}
+.minimap-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0px;
+}
+
+.minimap-options-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+  .minimap-options-item:hover {
+      background-color: #f6f6f6;
+      color: #0071CE;
+  }

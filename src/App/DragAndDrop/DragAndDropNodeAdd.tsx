@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faBars, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { faPauseCircle, faPaperPlane, faUser, faEnvelopeOpen} from '@fortawesome/free-regular-svg-icons';
-
+  
 
 
 function DragAndDropNodeAdd(){
@@ -16,7 +16,7 @@ function DragAndDropNodeAdd(){
 
   return (
     <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
-      <div className="trigger" onClick={handleTrigger}>
+      <div className="trigger" onClick={handleTrigger} >
         <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
       </div>
       {/* <div className="description">Vous pouvez glisser déposer les éléments pour les créer.</div> */}
@@ -53,33 +53,6 @@ function DragAndDropNodeAdd(){
         <span>Attente Retour Utilisateur</span>
       </div>
     </div>
-    // <aside>
-    //   <div className="description">Vous pouvez glisser déposer les éléments pour les créer.</div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'gestion')} draggable>
-    //     Action Batch Gestion
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'envoi')} draggable>
-    //     Action Batch Envoi
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'scenario')} draggable>
-    //     Action Scenario
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'attente')} draggable>
-    //     Action Attente
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'mail')} draggable>
-    //     Mail Simple
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'retour')} draggable>
-    //     Attente Retour
-    //   </div>
-    //   <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'conditionnee')} draggable>
-    //     Action Conditionnée
-    //   </div>
-    //   <div className="dndnode" onDragStart={(event) => onDragStart(event, 'retourUser')} draggable>
-    //     Attente Retour Utilisateur
-    //   </div>
-    // </aside>
   );
 };
 export default DragAndDropNodeAdd
